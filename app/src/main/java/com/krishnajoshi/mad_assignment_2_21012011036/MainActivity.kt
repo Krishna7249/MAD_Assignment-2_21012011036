@@ -1,32 +1,32 @@
 package com.krishnajoshi.mad_assignment_2_21012011036
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val foodList = findViewById<ListView>(R.id.foodList)
-
-        val items = listOf(
-            "Food Item 1",
-            "Food Item 2",
-            // Add more food items here
+        val foodItems = arrayOf(
+            "Rasmalai Trifle",
+            "White Chocolate Nuts Cups",
+            "Muskmelon Sago Pudding"
         )
 
-        /*val adapter = FoodItemAdapter(this, items)
-        foodList.adapter = adapter
-        foodList.setOnItemClickListener { _, _, position, _ ->
-            val selectedFoodItem = items[position]
-            val intent = Intent(this, RecipeActivity::class.java)
-            intent.putExtra("recipe", selectedFoodItem.recipe)
-            startActivity(intent)
-        }*/
+        val listView: ListView = findViewById(R.id.foodListView)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, foodItems)
+        listView.adapter = adapter
 
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val selectedFoodItem = foodItems[position]
+            val intent = Intent(this, RecipeDetailActivity::class.java)
+            intent.putExtra("foodItem", selectedFoodItem)
+            startActivity(intent)
+        }
     }
 }
+

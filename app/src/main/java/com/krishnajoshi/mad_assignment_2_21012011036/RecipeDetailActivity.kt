@@ -9,12 +9,18 @@ class RecipeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_detail)
 
-        val foodItem = intent.getSerializableExtra("foodItem") as FoodItem
+        val recipeName = intent.getStringExtra("recipeName")
 
         val recipeTitleTextView: TextView = findViewById(R.id.recipeTitleTextView)
         val recipeDescriptionTextView: TextView = findViewById(R.id.recipeDescriptionTextView)
 
-        recipeTitleTextView.text = foodItem.name
-        recipeDescriptionTextView.text = "Ingredients:\n" + foodItem.ingredients.joinToString("\n") + "\n\n" + foodItem.instructions
+        val selectedFoodItem = foodItems.find { it.name == recipeName }
+
+        if (selectedFoodItem != null) {
+            recipeTitleTextView.text = selectedFoodItem.name
+            recipeDescriptionTextView.text = "Ingredients:\n" +
+                    selectedFoodItem.ingredients.joinToString("\n") + "\n\n" +
+                    selectedFoodItem.instructions
+        }
     }
 }

@@ -11,22 +11,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val foodItems = arrayOf(
-            "Rasmalai Trifle",
-            "White Chocolate Nuts Cups",
-            "Muskmelon Sago Pudding"
-        )
-
         val listView: ListView = findViewById(R.id.foodListView)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, foodItems)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, foodItems.map { it.name })
         listView.adapter = adapter
 
         listView.setOnItemClickListener { _, _, position, _ ->
             val selectedFoodItem = foodItems[position]
             val intent = Intent(this, RecipeDetailActivity::class.java)
-            intent.putExtra("foodItem", selectedFoodItem)
+            intent.putExtra("recipeName", selectedFoodItem.name)
             startActivity(intent)
         }
     }
 }
-

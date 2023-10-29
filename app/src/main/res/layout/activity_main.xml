@@ -10,6 +10,20 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimary">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="italic"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of Dishes:-"
+        android:textColor="@color/white"
+        android:textSize="25dp"/>
     <ListView
         android:id="@+id/foodListView"
         android:layout_width="match_parent"
